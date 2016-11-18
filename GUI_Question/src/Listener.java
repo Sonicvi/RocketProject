@@ -12,44 +12,46 @@ public class Listener extends JFrame implements ActionListener {
 	    JPanel panel;
 	    JRadioButton option1;
         JRadioButton option2;
-        ButtonGroup gruppe;
+        ButtonGroup buttonGroup;
+        
 	
 	public Listener(){
-		this.setTitle("ActionListener Beispiel");
+		
+		this.setTitle("True/False questions");
         this.setSize(400, 200);
 		
-		JFrame meinJFrame = new JFrame();
-		meinJFrame.setDefaultCloseOperation(meinJFrame.EXIT_ON_CLOSE);
-		
-        meinJFrame.setTitle("JButton Beispiel");
+        //create and add the panel to the frame
         JPanel panel = new JPanel();
-        
+        this.add(panel);
         
  
         // JButton with text "confirm" is created
+        //and registered
         confirmButton = new JButton("confirm");
-         feedbackLabel= new JLabel();
-         questionLabel= new JLabel("Can rockets fly to the moon?");
-         
-         option1 = new JRadioButton("yes");
-         option2 = new JRadioButton("no");
-        
-        ButtonGroup gruppe = new ButtonGroup();
-        
-        //JRadioButtons added to ButtonGroup 
-        gruppe.add(option1);
-        gruppe.add(option2);
-        
+        panel.add(confirmButton);
         confirmButton.addActionListener(this);
         
-        panel.add(confirmButton);
-        panel.add(feedbackLabel);
-        
-        panel.add(option1);
-        panel.add(option2);
-        
-        panel.add(feedbackLabel);
-        this.add(panel);
+        //feedback label is added
+         feedbackLabel= new JLabel();
+         panel.add(feedbackLabel);
+         
+         //The actual question is added
+         questionLabel= new JLabel();
+         questionLabel.setText("Can rockets fly to the moon?");
+         panel.add(questionLabel);
+         
+         //Radio button group is created and added
+         //Multiple choice buttons (Radio buttons are created)possible choices
+         //
+         ButtonGroup gruppe = new ButtonGroup();
+         option1 = new JRadioButton("yes");
+         gruppe.add(option1);
+         panel.add(option1);
+         
+         option2 = new JRadioButton("no");
+         gruppe.add(option2);
+         panel.add(option2);
+     
         
        
 	}
