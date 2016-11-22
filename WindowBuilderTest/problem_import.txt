@@ -1,0 +1,12 @@
+problems to resolve the imports
+
+import javax.swing.JRadioButton;
+import com.jgoodies.forms.layout.FormLayout;
+import com.jgoodies.forms.layout.ColumnSpec;
+import com.jgoodies.forms.layout.FormSpecs;
+import com.jgoodies.forms.layout.RowSpec;
+
+action
+update eclipse to neon
+
+outcome?
