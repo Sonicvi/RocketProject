@@ -11,10 +11,8 @@ import javax.swing.JLabel;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import javax.swing.JRadioButton;
-import javax.swing.JButton;
 
 public class Result extends JFrame {
-	
 
 	private JPanel contentPane;
 
@@ -44,9 +42,9 @@ public class Result extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		GridBagLayout gbl_contentPane = new GridBagLayout();
-		gbl_contentPane.columnWidths = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+		gbl_contentPane.columnWidths = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 		gbl_contentPane.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-		gbl_contentPane.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_contentPane.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		gbl_contentPane.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		contentPane.setLayout(gbl_contentPane);
 		
@@ -56,13 +54,6 @@ public class Result extends JFrame {
 		gbc_lblResult.gridx = 0;
 		gbc_lblResult.gridy = 0;
 		contentPane.add(lblResult, gbc_lblResult);
-		
-		JLabel lblScore = new JLabel("Score");
-		GridBagConstraints gbc_lblScore = new GridBagConstraints();
-		gbc_lblScore.insets = new Insets(0, 0, 5, 5);
-		gbc_lblScore.gridx = 6;
-		gbc_lblScore.gridy = 0;
-		contentPane.add(lblScore, gbc_lblScore);
 		
 		JLabel lblQ = new JLabel("Q1");
 		GridBagConstraints gbc_lblQ = new GridBagConstraints();
@@ -80,7 +71,7 @@ public class Result extends JFrame {
 		
 		JLabel lblQ_2 = new JLabel("Q3");
 		GridBagConstraints gbc_lblQ_2 = new GridBagConstraints();
-		gbc_lblQ_2.insets = new Insets(0, 0, 5, 5);
+		gbc_lblQ_2.insets = new Insets(0, 0, 5, 0);
 		gbc_lblQ_2.gridx = 26;
 		gbc_lblQ_2.gridy = 2;
 		contentPane.add(lblQ_2, gbc_lblQ_2);
@@ -101,7 +92,7 @@ public class Result extends JFrame {
 		
 		JRadioButton rdbtnA_2 = new JRadioButton("a");
 		GridBagConstraints gbc_rdbtnA_2 = new GridBagConstraints();
-		gbc_rdbtnA_2.insets = new Insets(0, 0, 5, 5);
+		gbc_rdbtnA_2.insets = new Insets(0, 0, 5, 0);
 		gbc_rdbtnA_2.gridx = 26;
 		gbc_rdbtnA_2.gridy = 3;
 		contentPane.add(rdbtnA_2, gbc_rdbtnA_2);
@@ -122,7 +113,7 @@ public class Result extends JFrame {
 		
 		JRadioButton rdbtnB_2 = new JRadioButton("b");
 		GridBagConstraints gbc_rdbtnB_2 = new GridBagConstraints();
-		gbc_rdbtnB_2.insets = new Insets(0, 0, 5, 5);
+		gbc_rdbtnB_2.insets = new Insets(0, 0, 5, 0);
 		gbc_rdbtnB_2.gridx = 26;
 		gbc_rdbtnB_2.gridy = 4;
 		contentPane.add(rdbtnB_2, gbc_rdbtnB_2);
@@ -143,7 +134,7 @@ public class Result extends JFrame {
 		
 		JRadioButton rdbtnC_2 = new JRadioButton("c");
 		GridBagConstraints gbc_rdbtnC_2 = new GridBagConstraints();
-		gbc_rdbtnC_2.insets = new Insets(0, 0, 5, 5);
+		gbc_rdbtnC_2.insets = new Insets(0, 0, 5, 0);
 		gbc_rdbtnC_2.gridx = 26;
 		gbc_rdbtnC_2.gridy = 5;
 		contentPane.add(rdbtnC_2, gbc_rdbtnC_2);
@@ -164,7 +155,7 @@ public class Result extends JFrame {
 		
 		JRadioButton rdbtnD_2 = new JRadioButton("d");
 		GridBagConstraints gbc_rdbtnD_2 = new GridBagConstraints();
-		gbc_rdbtnD_2.insets = new Insets(0, 0, 5, 5);
+		gbc_rdbtnD_2.insets = new Insets(0, 0, 5, 0);
 		gbc_rdbtnD_2.gridx = 26;
 		gbc_rdbtnD_2.gridy = 6;
 		contentPane.add(rdbtnD_2, gbc_rdbtnD_2);
@@ -185,7 +176,7 @@ public class Result extends JFrame {
 		
 		JLabel lblQ_5 = new JLabel("Q6");
 		GridBagConstraints gbc_lblQ_5 = new GridBagConstraints();
-		gbc_lblQ_5.insets = new Insets(0, 0, 5, 5);
+		gbc_lblQ_5.insets = new Insets(0, 0, 5, 0);
 		gbc_lblQ_5.gridx = 26;
 		gbc_lblQ_5.gridy = 8;
 		contentPane.add(lblQ_5, gbc_lblQ_5);
@@ -206,7 +197,7 @@ public class Result extends JFrame {
 		
 		JRadioButton rdbtnA_5 = new JRadioButton("a");
 		GridBagConstraints gbc_rdbtnA_5 = new GridBagConstraints();
-		gbc_rdbtnA_5.insets = new Insets(0, 0, 5, 5);
+		gbc_rdbtnA_5.insets = new Insets(0, 0, 5, 0);
 		gbc_rdbtnA_5.gridx = 26;
 		gbc_rdbtnA_5.gridy = 9;
 		contentPane.add(rdbtnA_5, gbc_rdbtnA_5);
@@ -227,7 +218,7 @@ public class Result extends JFrame {
 		
 		JRadioButton rdbtnB_5 = new JRadioButton("b");
 		GridBagConstraints gbc_rdbtnB_5 = new GridBagConstraints();
-		gbc_rdbtnB_5.insets = new Insets(0, 0, 5, 5);
+		gbc_rdbtnB_5.insets = new Insets(0, 0, 5, 0);
 		gbc_rdbtnB_5.gridx = 26;
 		gbc_rdbtnB_5.gridy = 10;
 		contentPane.add(rdbtnB_5, gbc_rdbtnB_5);
@@ -248,7 +239,7 @@ public class Result extends JFrame {
 		
 		JRadioButton rdbtnC_5 = new JRadioButton("c");
 		GridBagConstraints gbc_rdbtnC_5 = new GridBagConstraints();
-		gbc_rdbtnC_5.insets = new Insets(0, 0, 5, 5);
+		gbc_rdbtnC_5.insets = new Insets(0, 0, 5, 0);
 		gbc_rdbtnC_5.gridx = 26;
 		gbc_rdbtnC_5.gridy = 11;
 		contentPane.add(rdbtnC_5, gbc_rdbtnC_5);
@@ -269,7 +260,7 @@ public class Result extends JFrame {
 		
 		JRadioButton rdbtnD_5 = new JRadioButton("d");
 		GridBagConstraints gbc_rdbtnD_5 = new GridBagConstraints();
-		gbc_rdbtnD_5.insets = new Insets(0, 0, 5, 5);
+		gbc_rdbtnD_5.insets = new Insets(0, 0, 5, 0);
 		gbc_rdbtnD_5.gridx = 26;
 		gbc_rdbtnD_5.gridy = 12;
 		contentPane.add(rdbtnD_5, gbc_rdbtnD_5);
@@ -290,7 +281,7 @@ public class Result extends JFrame {
 		
 		JLabel lblQ_8 = new JLabel("Q9");
 		GridBagConstraints gbc_lblQ_8 = new GridBagConstraints();
-		gbc_lblQ_8.insets = new Insets(0, 0, 5, 5);
+		gbc_lblQ_8.insets = new Insets(0, 0, 5, 0);
 		gbc_lblQ_8.gridx = 26;
 		gbc_lblQ_8.gridy = 14;
 		contentPane.add(lblQ_8, gbc_lblQ_8);
@@ -311,7 +302,7 @@ public class Result extends JFrame {
 		
 		JRadioButton rdbtnA_8 = new JRadioButton("a");
 		GridBagConstraints gbc_rdbtnA_8 = new GridBagConstraints();
-		gbc_rdbtnA_8.insets = new Insets(0, 0, 5, 5);
+		gbc_rdbtnA_8.insets = new Insets(0, 0, 5, 0);
 		gbc_rdbtnA_8.gridx = 26;
 		gbc_rdbtnA_8.gridy = 15;
 		contentPane.add(rdbtnA_8, gbc_rdbtnA_8);
@@ -332,7 +323,7 @@ public class Result extends JFrame {
 		
 		JRadioButton rdbtnB_8 = new JRadioButton("b");
 		GridBagConstraints gbc_rdbtnB_8 = new GridBagConstraints();
-		gbc_rdbtnB_8.insets = new Insets(0, 0, 5, 5);
+		gbc_rdbtnB_8.insets = new Insets(0, 0, 5, 0);
 		gbc_rdbtnB_8.gridx = 26;
 		gbc_rdbtnB_8.gridy = 16;
 		contentPane.add(rdbtnB_8, gbc_rdbtnB_8);
@@ -353,7 +344,7 @@ public class Result extends JFrame {
 		
 		JRadioButton rdbtnC_8 = new JRadioButton("c");
 		GridBagConstraints gbc_rdbtnC_8 = new GridBagConstraints();
-		gbc_rdbtnC_8.insets = new Insets(0, 0, 5, 5);
+		gbc_rdbtnC_8.insets = new Insets(0, 0, 5, 0);
 		gbc_rdbtnC_8.gridx = 26;
 		gbc_rdbtnC_8.gridy = 17;
 		contentPane.add(rdbtnC_8, gbc_rdbtnC_8);
@@ -374,7 +365,7 @@ public class Result extends JFrame {
 		
 		JRadioButton rdbtnD_8 = new JRadioButton("d");
 		GridBagConstraints gbc_rdbtnD_8 = new GridBagConstraints();
-		gbc_rdbtnD_8.insets = new Insets(0, 0, 5, 5);
+		gbc_rdbtnD_8.insets = new Insets(0, 0, 5, 0);
 		gbc_rdbtnD_8.gridx = 26;
 		gbc_rdbtnD_8.gridy = 18;
 		contentPane.add(rdbtnD_8, gbc_rdbtnD_8);
@@ -395,7 +386,7 @@ public class Result extends JFrame {
 		
 		JLabel lblQ_11 = new JLabel("Q12");
 		GridBagConstraints gbc_lblQ_11 = new GridBagConstraints();
-		gbc_lblQ_11.insets = new Insets(0, 0, 5, 5);
+		gbc_lblQ_11.insets = new Insets(0, 0, 5, 0);
 		gbc_lblQ_11.gridx = 26;
 		gbc_lblQ_11.gridy = 20;
 		contentPane.add(lblQ_11, gbc_lblQ_11);
@@ -416,7 +407,7 @@ public class Result extends JFrame {
 		
 		JRadioButton rdbtnA_11 = new JRadioButton("a");
 		GridBagConstraints gbc_rdbtnA_11 = new GridBagConstraints();
-		gbc_rdbtnA_11.insets = new Insets(0, 0, 5, 5);
+		gbc_rdbtnA_11.insets = new Insets(0, 0, 5, 0);
 		gbc_rdbtnA_11.gridx = 26;
 		gbc_rdbtnA_11.gridy = 21;
 		contentPane.add(rdbtnA_11, gbc_rdbtnA_11);
@@ -437,7 +428,7 @@ public class Result extends JFrame {
 		
 		JRadioButton rdbtnB_11 = new JRadioButton("b");
 		GridBagConstraints gbc_rdbtnB_11 = new GridBagConstraints();
-		gbc_rdbtnB_11.insets = new Insets(0, 0, 5, 5);
+		gbc_rdbtnB_11.insets = new Insets(0, 0, 5, 0);
 		gbc_rdbtnB_11.gridx = 26;
 		gbc_rdbtnB_11.gridy = 22;
 		contentPane.add(rdbtnB_11, gbc_rdbtnB_11);
@@ -456,12 +447,12 @@ public class Result extends JFrame {
 		gbc_rdbtnC_10.gridy = 23;
 		contentPane.add(rdbtnC_10, gbc_rdbtnC_10);
 		
-		JRadioButton rdbtnC_11 = new JRadioButton("c");
-		GridBagConstraints gbc_rdbtnC_11 = new GridBagConstraints();
-		gbc_rdbtnC_11.insets = new Insets(0, 0, 5, 5);
-		gbc_rdbtnC_11.gridx = 26;
-		gbc_rdbtnC_11.gridy = 23;
-		contentPane.add(rdbtnC_11, gbc_rdbtnC_11);
+		JRadioButton radioButton = new JRadioButton("New radio button");
+		GridBagConstraints gbc_radioButton = new GridBagConstraints();
+		gbc_radioButton.insets = new Insets(0, 0, 5, 0);
+		gbc_radioButton.gridx = 26;
+		gbc_radioButton.gridy = 23;
+		contentPane.add(radioButton, gbc_radioButton);
 		
 		JRadioButton rdbtnD_9 = new JRadioButton("d");
 		GridBagConstraints gbc_rdbtnD_9 = new GridBagConstraints();
@@ -476,26 +467,6 @@ public class Result extends JFrame {
 		gbc_rdbtnD_10.gridx = 13;
 		gbc_rdbtnD_10.gridy = 24;
 		contentPane.add(rdbtnD_10, gbc_rdbtnD_10);
-		
-		JRadioButton rdbtnD_11 = new JRadioButton("d");
-		GridBagConstraints gbc_rdbtnD_11 = new GridBagConstraints();
-		gbc_rdbtnD_11.insets = new Insets(0, 0, 0, 5);
-		gbc_rdbtnD_11.gridx = 26;
-		gbc_rdbtnD_11.gridy = 24;
-		contentPane.add(rdbtnD_11, gbc_rdbtnD_11);
-		
-		JButton btnShowCorrectAnswers = new JButton("Show correct answers");
-		GridBagConstraints gbc_btnShowCorrectAnswers = new GridBagConstraints();
-		gbc_btnShowCorrectAnswers.insets = new Insets(0, 0, 0, 5);
-		gbc_btnShowCorrectAnswers.gridx = 31;
-		gbc_btnShowCorrectAnswers.gridy = 24;
-		contentPane.add(btnShowCorrectAnswers, gbc_btnShowCorrectAnswers);
-		
-		JButton btnMainMenu = new JButton("Main menu");
-		GridBagConstraints gbc_btnMainMenu = new GridBagConstraints();
-		gbc_btnMainMenu.gridx = 33;
-		gbc_btnMainMenu.gridy = 24;
-		contentPane.add(btnMainMenu, gbc_btnMainMenu);
 	}
 
 }
