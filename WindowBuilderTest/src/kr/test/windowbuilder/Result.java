@@ -14,6 +14,7 @@ import javax.swing.JRadioButton;
 import javax.swing.JButton;
 
 public class Result extends JFrame {
+	
 
 	private JPanel contentPane;
 
