@@ -102,19 +102,25 @@ public class Result extends JFrame {
 		);
 		
 		JLabel lblScore = new JLabel("Score:");
+		
+		JLabel lblResult = new JLabel("Result");
 		GroupLayout gl_panel_5 = new GroupLayout(panel_5);
 		gl_panel_5.setHorizontalGroup(
 			gl_panel_5.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel_5.createSequentialGroup()
 					.addContainerGap()
 					.addComponent(lblScore, GroupLayout.PREFERRED_SIZE, 61, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(1173, Short.MAX_VALUE))
+					.addGap(368)
+					.addComponent(lblResult)
+					.addContainerGap(759, Short.MAX_VALUE))
 		);
 		gl_panel_5.setVerticalGroup(
 			gl_panel_5.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel_5.createSequentialGroup()
 					.addContainerGap()
-					.addComponent(lblScore)
+					.addGroup(gl_panel_5.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblScore)
+						.addComponent(lblResult))
 					.addContainerGap(37, Short.MAX_VALUE))
 		);
 		panel_5.setLayout(gl_panel_5);
