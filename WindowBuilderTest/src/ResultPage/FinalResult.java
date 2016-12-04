@@ -12,8 +12,9 @@ import javax.swing.JRadioButton;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.EmptyBorder;
+import java.awt.Font;
 
-public class Result extends JFrame {
+public class FinalResult extends JFrame {
 	private JPanel contentPane;
 	private final ButtonGroup buttonGroup = new ButtonGroup();
 	private final ButtonGroup buttonGroup_1 = new ButtonGroup();
@@ -35,7 +36,7 @@ public class Result extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Result frame = new Result();
+					FinalResult frame = new FinalResult();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -47,7 +48,7 @@ public class Result extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Result() {
+	public FinalResult() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1280, 720);
 		contentPane = new JPanel();
@@ -67,21 +68,21 @@ public class Result extends JFrame {
 		JPanel panel_5 = new JPanel();
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
-			gl_contentPane.createParallelGroup(Alignment.LEADING)
-				.addComponent(panel_4, GroupLayout.DEFAULT_SIZE, 1254, Short.MAX_VALUE)
+			gl_contentPane.createParallelGroup(Alignment.TRAILING)
+				.addComponent(panel_4, GroupLayout.DEFAULT_SIZE, 1248, Short.MAX_VALUE)
 				.addGroup(gl_contentPane.createSequentialGroup()
-					.addComponent(panel_3, GroupLayout.DEFAULT_SIZE, 1254, Short.MAX_VALUE)
+					.addComponent(panel_2, GroupLayout.DEFAULT_SIZE, 1233, Short.MAX_VALUE)
 					.addContainerGap())
 				.addGroup(gl_contentPane.createSequentialGroup()
-					.addComponent(panel_2, GroupLayout.DEFAULT_SIZE, 1254, Short.MAX_VALUE)
+					.addComponent(panel_1, GroupLayout.DEFAULT_SIZE, 1233, Short.MAX_VALUE)
 					.addContainerGap())
 				.addGroup(gl_contentPane.createSequentialGroup()
-					.addComponent(panel_1, GroupLayout.DEFAULT_SIZE, 1254, Short.MAX_VALUE)
-					.addContainerGap())
-				.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
-						.addComponent(panel_5, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 1244, Short.MAX_VALUE)
-						.addComponent(panel, GroupLayout.DEFAULT_SIZE, 1254, Short.MAX_VALUE))
+						.addComponent(panel_5, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 1233, Short.MAX_VALUE)
+						.addComponent(panel, GroupLayout.DEFAULT_SIZE, 1233, Short.MAX_VALUE))
+					.addContainerGap())
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addComponent(panel_3, GroupLayout.DEFAULT_SIZE, 1233, Short.MAX_VALUE)
 					.addContainerGap())
 		);
 		gl_contentPane.setVerticalGroup(
@@ -95,24 +96,26 @@ public class Result extends JFrame {
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(panel_2, GroupLayout.PREFERRED_SIZE, 132, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(panel_3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(panel_3, GroupLayout.PREFERRED_SIZE, 183, GroupLayout.PREFERRED_SIZE)
+					.addGap(26)
 					.addComponent(panel_4, GroupLayout.PREFERRED_SIZE, 54, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(18, Short.MAX_VALUE))
+					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 		);
 		
-		JLabel lblScore = new JLabel("Score:");
+		JLabel lblScore = new JLabel("Total Score:");
+		lblScore.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		
-		JLabel lblResult = new JLabel("Result");
+		JLabel lblResult = new JLabel("Final Results");
+		lblResult.setFont(new Font("Tahoma", Font.BOLD, 20));
 		GroupLayout gl_panel_5 = new GroupLayout(panel_5);
 		gl_panel_5.setHorizontalGroup(
 			gl_panel_5.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel_5.createSequentialGroup()
+				.addGroup(Alignment.TRAILING, gl_panel_5.createSequentialGroup()
 					.addContainerGap()
-					.addComponent(lblScore, GroupLayout.PREFERRED_SIZE, 61, GroupLayout.PREFERRED_SIZE)
-					.addGap(368)
+					.addComponent(lblScore, GroupLayout.PREFERRED_SIZE, 188, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED, 468, Short.MAX_VALUE)
 					.addComponent(lblResult)
-					.addContainerGap(759, Short.MAX_VALUE))
+					.addGap(514))
 		);
 		gl_panel_5.setVerticalGroup(
 			gl_panel_5.createParallelGroup(Alignment.LEADING)
@@ -121,31 +124,17 @@ public class Result extends JFrame {
 					.addGroup(gl_panel_5.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblScore)
 						.addComponent(lblResult))
-					.addContainerGap(37, Short.MAX_VALUE))
+					.addContainerGap(26, Short.MAX_VALUE))
 		);
 		panel_5.setLayout(gl_panel_5);
-		
-		JButton btnNewButton_1 = new JButton("Main menu");
-		
-		JButton btnNewButton_2 = new JButton("Back");
 		GroupLayout gl_panel_4 = new GroupLayout(panel_4);
 		gl_panel_4.setHorizontalGroup(
-			gl_panel_4.createParallelGroup(Alignment.LEADING)
-				.addGroup(Alignment.TRAILING, gl_panel_4.createSequentialGroup()
-					.addContainerGap(1104, Short.MAX_VALUE)
-					.addComponent(btnNewButton_2)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(btnNewButton_1)
-					.addGap(6))
+			gl_panel_4.createParallelGroup(Alignment.TRAILING)
+				.addGap(0, 1248, Short.MAX_VALUE)
 		);
 		gl_panel_4.setVerticalGroup(
-			gl_panel_4.createParallelGroup(Alignment.LEADING)
-				.addGroup(Alignment.TRAILING, gl_panel_4.createSequentialGroup()
-					.addContainerGap(88, Short.MAX_VALUE)
-					.addGroup(gl_panel_4.createParallelGroup(Alignment.BASELINE)
-						.addComponent(btnNewButton_1)
-						.addComponent(btnNewButton_2))
-					.addContainerGap())
+			gl_panel_4.createParallelGroup(Alignment.TRAILING)
+				.addGap(0, 54, Short.MAX_VALUE)
 		);
 		panel_4.setLayout(gl_panel_4);
 		
@@ -190,6 +179,10 @@ public class Result extends JFrame {
 		
 		JRadioButton rdbtnNewRadioButton_45 = new JRadioButton("answer_124");
 		buttonGroup_11.add(rdbtnNewRadioButton_45);
+		
+		JButton btnNewButton_2 = new JButton("Back");
+		
+		JButton btnNewButton_1 = new JButton("Main menu");
 		GroupLayout gl_panel_3 = new GroupLayout(panel_3);
 		gl_panel_3.setHorizontalGroup(
 			gl_panel_3.createParallelGroup(Alignment.LEADING)
@@ -201,32 +194,40 @@ public class Result extends JFrame {
 						.addComponent(rdbtnNewRadioButton_35)
 						.addComponent(rdbtnNewRadioButton_36)
 						.addComponent(rdbtnNewRadioButton_37))
-					.addPreferredGap(ComponentPlacement.RELATED, 387, Short.MAX_VALUE)
+					.addPreferredGap(ComponentPlacement.RELATED, 350, Short.MAX_VALUE)
 					.addGroup(gl_panel_3.createParallelGroup(Alignment.LEADING)
-						.addComponent(lblQuestion_10)
-						.addComponent(rdbtnNewRadioButton_38)
-						.addComponent(rdbtnNewRadioButton_39)
-						.addComponent(rdbtnNewRadioButton_40)
-						.addComponent(rdbtnNewRadioButton_41))
-					.addGap(289)
-					.addGroup(gl_panel_3.createParallelGroup(Alignment.TRAILING)
-						.addGroup(gl_panel_3.createParallelGroup(Alignment.LEADING)
-							.addComponent(rdbtnNewRadioButton_45)
-							.addComponent(rdbtnNewRadioButton_44)
-							.addComponent(rdbtnNewRadioButton_43))
-						.addGroup(gl_panel_3.createParallelGroup(Alignment.LEADING)
-							.addComponent(rdbtnNewRadioButton_42)
-							.addComponent(lblQuestion_11)))
-					.addGap(303))
+						.addGroup(Alignment.TRAILING, gl_panel_3.createSequentialGroup()
+							.addGroup(gl_panel_3.createParallelGroup(Alignment.LEADING)
+								.addComponent(rdbtnNewRadioButton_38)
+								.addComponent(rdbtnNewRadioButton_39)
+								.addComponent(rdbtnNewRadioButton_40)
+								.addComponent(rdbtnNewRadioButton_41))
+							.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+						.addGroup(Alignment.TRAILING, gl_panel_3.createSequentialGroup()
+							.addComponent(lblQuestion_10)
+							.addGap(312)))
+					.addGroup(gl_panel_3.createParallelGroup(Alignment.LEADING, false)
+						.addGroup(gl_panel_3.createSequentialGroup()
+							.addGroup(gl_panel_3.createParallelGroup(Alignment.TRAILING)
+								.addGroup(gl_panel_3.createParallelGroup(Alignment.LEADING)
+									.addComponent(rdbtnNewRadioButton_45)
+									.addComponent(rdbtnNewRadioButton_44)
+									.addComponent(rdbtnNewRadioButton_43))
+								.addComponent(rdbtnNewRadioButton_42))
+							.addGap(28)
+							.addComponent(btnNewButton_2)
+							.addGap(9)
+							.addComponent(btnNewButton_1))
+						.addComponent(lblQuestion_11))
+					.addContainerGap())
 		);
 		gl_panel_3.setVerticalGroup(
 			gl_panel_3.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel_3.createSequentialGroup()
-					.addContainerGap()
+					.addContainerGap(31, Short.MAX_VALUE)
 					.addGroup(gl_panel_3.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_panel_3.createSequentialGroup()
-							.addComponent(lblQuestion_10)
-							.addPreferredGap(ComponentPlacement.RELATED)
+							.addGap(32)
 							.addComponent(rdbtnNewRadioButton_38)
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addComponent(rdbtnNewRadioButton_39)
@@ -245,16 +246,22 @@ public class Result extends JFrame {
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addComponent(rdbtnNewRadioButton_37))
 						.addGroup(gl_panel_3.createSequentialGroup()
-							.addComponent(lblQuestion_11)
+							.addGroup(gl_panel_3.createParallelGroup(Alignment.BASELINE)
+								.addComponent(lblQuestion_11)
+								.addComponent(lblQuestion_10))
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addComponent(rdbtnNewRadioButton_42)
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addComponent(rdbtnNewRadioButton_43)
 							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(rdbtnNewRadioButton_44)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(rdbtnNewRadioButton_45)))
-					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+							.addGroup(gl_panel_3.createParallelGroup(Alignment.LEADING)
+								.addComponent(btnNewButton_2)
+								.addComponent(btnNewButton_1)
+								.addGroup(gl_panel_3.createSequentialGroup()
+									.addComponent(rdbtnNewRadioButton_44)
+									.addPreferredGap(ComponentPlacement.RELATED)
+									.addComponent(rdbtnNewRadioButton_45)))))
+					.addGap(18))
 		);
 		panel_3.setLayout(gl_panel_3);
 		

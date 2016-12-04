@@ -18,31 +18,13 @@ public class Quiz {
 		return qca;
 	}
 
-	public int getScore() {
-		return score;
-	}
-
-	public int getQcount() {
-		return qcount;
-	}
-	
-
-	public void setScore(int score) {
-		this.score = score;
-	}
-
-	public void setQcount(int qcount) {
-		this.qcount = qcount;
-	}
 
 
 	String[][] qpa;
     String[][] qca;
-  private int score = 0;
-  private int qcount = 0;
     
     public Quiz(){
-    	qpa = new String [10][5];
+    	qpa = new String [14][5];
     	
 	    	 qpa[0][0]="How to run Java program on the command prompt?";
 	         qpa[0][1]="javac JavaProgram";
@@ -105,7 +87,7 @@ public class Quiz {
 	         qpa[9][4]="int[][] arr=new int[rows][cols]";
 	         
 	         //qca will store the questions and the correct answers
-	         qca=new String[10][2];
+	         qca=new String[14][2];
              
              qca[0][0]="How to run Java program on the command prompt?";
              qca[0][1]="java JavaProgram";
