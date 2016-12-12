@@ -14,6 +14,7 @@ import java.awt.Font;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.ImageIcon;
 import javax.swing.JRadioButton;
+import javax.swing.AbstractButton;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
@@ -21,6 +22,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JTextField;
+import java.awt.event.ItemListener;
+import java.awt.event.ItemEvent;
 
 public class Question {
 
@@ -28,13 +31,8 @@ public class Question {
 	private final ButtonGroup buttonGroup = new ButtonGroup();
 	private CardLayout cardLayout = new CardLayout();
 
-	private int qCount = 0;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
-	private JTextField textField_4;
-	private JTextField textField_5;
+	private static int qCount = 0;
+	private int[] answerArray = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 
 	/**
 	 * Launch the application.
@@ -57,18 +55,31 @@ public class Question {
 	 * Getter and setter for qCount
 	 */
 
-	public int getqCount() {
+	public static int getqCount() {
 		return qCount;
 	}
 
-	public void setqCount(int qCount) {
-		this.qCount = qCount;
+	public static void setqCount(int qCount) {
+		Question.qCount = qCount;
+	}
+
+	public int[] getAnswerArray() {
+		return answerArray;
+	}
+
+	public void setAnswerArray(int[] answerArray) {
+		answerArray = answerArray;
 	}
 
 	/**
 	 * Create the application.
 	 */
 	public Question() {
+		initialize();
+	}
+
+	public Question(int part) {
+		setqCount((part - 1) * 5);
 		initialize();
 	}
 
@@ -104,39 +115,81 @@ public class Question {
 		JPanel panel_4 = new JPanel();
 		panel.add(panel_4, "Q4");
 
-		JPanel panel_5 = new JPanel();
-		panel.add(panel_5, "Q5");
+		// First question
+		JLabel Q1label = new JLabel("Q" + ((getqCount() + 1)) + " " + q.qpa[getqCount()][0]);
+		Q1label.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		JLabel counter1 = new JLabel((getqCount() + 1) + "/5");
+		counter1.setHorizontalAlignment(SwingConstants.CENTER);
+		counter1.setFont(new Font("Tahoma", Font.PLAIN, 20));
 
-		JPanel panel_6 = new JPanel();
-		panel.add(panel_6, "Q15");
+		// Second question
+		JLabel Q2label = new JLabel("");
+		JLabel counter2 = new JLabel("");
+		JRadioButton Q2rdbtnAns1 = new JRadioButton("");
+		JRadioButton Q2rdbtnAns2 = new JRadioButton("");
+		JRadioButton Q2rdbtnAns3 = new JRadioButton("");
+		JRadioButton Q2rdbtnAns4 = new JRadioButton("");
 
-		// CardLayout cl = (CardLayout)(frame.getLayout());
-		// cardLayout.first(panel);
+		// Third question
+		JLabel Q3label = new JLabel("");
+		JLabel counter3 = new JLabel("");
+		JRadioButton Q3rdbtnAns1 = new JRadioButton("");
+		JRadioButton Q3rdbtnAns2 = new JRadioButton("");
+		JRadioButton Q3rdbtnAns3 = new JRadioButton("");
+		JRadioButton Q3rdbtnAns4 = new JRadioButton("");
 
-		JLabel label = new JLabel("Q" + ((qCount + 1)) + " " + q.qpa[qCount][0]);
-		label.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		// Fourth question
+		JLabel Q4label = new JLabel("");
+		JLabel counter4 = new JLabel("");
+		JRadioButton Q4rdbtnAns1 = new JRadioButton("");
+		JRadioButton Q4rdbtnAns2 = new JRadioButton("");
+		JRadioButton Q4rdbtnAns3 = new JRadioButton("");
+		JRadioButton Q4rdbtnAns4 = new JRadioButton("");
+
+		//actionlistener for the radiobuttons
+		class RadioButtonActionListener implements ActionListener {
+			@Override
+			public void actionPerformed(ActionEvent event) {
+				JRadioButton button = (JRadioButton) event.getSource();
+				//checks if the correct radio button was pressed
+				if (button.isSelected() && button.getText() == q.qca[qCount][1]) {
+					System.out.println("Correct!");
+					answerArray[qCount] = 1;
+					// Loic add score++ here!
+				} else
+					answerArray[qCount] = -1;
+
+				System.out.println("question:" + answerArray[qCount]);
+			}
+		}
 
 		JLabel labelPic = new JLabel("");
-		labelPic.setIcon(new ImageIcon("C:\\Users\\Riku\\Desktop\\6e18d91076204287c227ce03e273c701_original.jpg"));
+		labelPic.setIcon(null);
 
-		JRadioButton rdbtnAns1 = new JRadioButton(q.qpa[qCount][1]);
-		rdbtnAns1.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		buttonGroup.add(rdbtnAns1);
+		JRadioButton Q1rdbtnAns1 = new JRadioButton(q.qpa[getqCount()][1]);
+		Q1rdbtnAns1.addActionListener(new RadioButtonActionListener() {
+		});
+		Q1rdbtnAns1.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		buttonGroup.add(Q1rdbtnAns1);
 
-		JRadioButton rdbtnAns2 = new JRadioButton(q.qpa[qCount][2]);
-		rdbtnAns2.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		buttonGroup.add(rdbtnAns2);
+		JRadioButton Q1rdbtnAns2 = new JRadioButton(q.qpa[qCount][2]);
+		Q1rdbtnAns2.addActionListener(new RadioButtonActionListener() {
+		});
+		Q1rdbtnAns2.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		buttonGroup.add(Q1rdbtnAns2);
 
-		JRadioButton rdbtnAns3 = new JRadioButton(q.qpa[qCount][3]);
-		rdbtnAns3.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		buttonGroup.add(rdbtnAns3);
+		JRadioButton Q1rdbtnAns3 = new JRadioButton(q.qpa[qCount][3]);
+		Q1rdbtnAns3.addActionListener(new RadioButtonActionListener() {
+		});
+		Q1rdbtnAns3.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		buttonGroup.add(Q1rdbtnAns3);
 
-		JRadioButton rdbtnAns4 = new JRadioButton(q.qpa[qCount][4]);
-		rdbtnAns4.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		buttonGroup.add(rdbtnAns4);
-
-		System.out.println(qCount);
-
+		JRadioButton Q1rdbtnAns4 = new JRadioButton(q.qpa[qCount][4]);
+		Q1rdbtnAns4.addActionListener(new RadioButtonActionListener() {
+		});
+		Q1rdbtnAns4.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		buttonGroup.add(Q1rdbtnAns4);
+		//the first previous button is disabled
 		JButton btnPrev = new JButton("Previous");
 		btnPrev.setEnabled(false);
 		btnPrev.setFont(new Font("Tahoma", Font.PLAIN, 18));
@@ -144,9 +197,40 @@ public class Question {
 		JButton btnNext = new JButton("Next");
 		btnNext.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				System.out.println(qCount);
+				//increase qCount by 1
 				qCount++;
-				System.out.println(qCount);
+				//set the next questions lable, counter and radio buttons
+				Q2label.setText("Q" + (getqCount() + 1) + " " + q.qpa[qCount][0]);
+				Q2label.setFont(new Font("Tahoma", Font.PLAIN, 20));
+
+				counter2.setText((getqCount() + 1) + "/5");
+				counter2.setHorizontalAlignment(SwingConstants.CENTER);
+				counter2.setFont(new Font("Tahoma", Font.PLAIN, 20));
+
+				Q2rdbtnAns1.setText(q.qpa[getqCount()][1]);
+				Q2rdbtnAns1.addActionListener(new RadioButtonActionListener() {
+				});
+				buttonGroup.add(Q2rdbtnAns1);
+				Q2rdbtnAns1.setFont(new Font("Tahoma", Font.PLAIN, 18));
+
+				Q2rdbtnAns2.setText(q.qpa[getqCount()][2]);
+				Q2rdbtnAns2.addActionListener(new RadioButtonActionListener() {
+				});
+				buttonGroup.add(Q2rdbtnAns2);
+				Q2rdbtnAns2.setFont(new Font("Tahoma", Font.PLAIN, 18));
+
+				Q2rdbtnAns3.setText(q.qpa[getqCount()][3]);
+				Q2rdbtnAns3.addActionListener(new RadioButtonActionListener() {
+				});
+				buttonGroup.add(Q2rdbtnAns3);
+				Q2rdbtnAns3.setFont(new Font("Tahoma", Font.PLAIN, 18));
+
+				Q2rdbtnAns4.setText(q.qpa[getqCount()][4]);
+				Q2rdbtnAns4.addActionListener(new RadioButtonActionListener() {
+				});
+				buttonGroup.add(Q2rdbtnAns4);
+				Q2rdbtnAns4.setFont(new Font("Tahoma", Font.PLAIN, 18));
+				//load next panel using cardlayout
 				CardLayout cardLayout = (CardLayout) (panel.getLayout());
 				cardLayout.show(panel, "Q2");
 
@@ -154,6 +238,7 @@ public class Question {
 		});
 		btnNext.setFont(new Font("Tahoma", Font.PLAIN, 18));
 
+		//Loic add goto main menu function here!
 		JButton btnMMenu = new JButton("Main Menu");
 		btnMMenu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -161,50 +246,45 @@ public class Question {
 		});
 		btnMMenu.setFont(new Font("Tahoma", Font.PLAIN, 18));
 
-		JLabel label_2 = new JLabel((qCount + 1) + "/5");
-		label_2.setHorizontalAlignment(SwingConstants.CENTER);
-		label_2.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		GroupLayout gl_panel_1 = new GroupLayout(panel_1);
-		gl_panel_1.setHorizontalGroup(
-				gl_panel_1.createParallelGroup(Alignment.TRAILING).addGroup(Alignment.LEADING, gl_panel_1
-						.createSequentialGroup().addGap(294).addGroup(gl_panel_1.createParallelGroup(Alignment.TRAILING)
-								.addGroup(gl_panel_1.createSequentialGroup()
-										.addPreferredGap(ComponentPlacement.RELATED,
-												128, GroupLayout.PREFERRED_SIZE)
-										.addComponent(label, GroupLayout.PREFERRED_SIZE, 543,
-												GroupLayout.PREFERRED_SIZE))
-								.addGroup(Alignment.LEADING, gl_panel_1.createParallelGroup(Alignment.LEADING, false)
-										.addGroup(Alignment.TRAILING,
-												gl_panel_1.createSequentialGroup()
-														.addComponent(label_2, GroupLayout.PREFERRED_SIZE, 103,
-																GroupLayout.PREFERRED_SIZE)
-														.addPreferredGap(ComponentPlacement.RELATED,
-																GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-														.addComponent(btnPrev, GroupLayout.PREFERRED_SIZE, 113,
-																GroupLayout.PREFERRED_SIZE)
-														.addGap(54)
-														.addComponent(btnNext, GroupLayout.PREFERRED_SIZE, 113,
-																GroupLayout.PREFERRED_SIZE)
-														.addGap(59).addComponent(btnMMenu, GroupLayout.PREFERRED_SIZE,
-																122, GroupLayout.PREFERRED_SIZE))
-										.addComponent(labelPic, Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 671,
+		gl_panel_1.setHorizontalGroup(gl_panel_1.createParallelGroup(Alignment.TRAILING).addGroup(Alignment.LEADING,
+				gl_panel_1.createSequentialGroup().addGap(294).addGroup(gl_panel_1
+						.createParallelGroup(Alignment.TRAILING)
+						.addGroup(gl_panel_1.createSequentialGroup()
+								.addPreferredGap(ComponentPlacement.RELATED, 128,
+										GroupLayout.PREFERRED_SIZE)
+								.addComponent(Q1label, GroupLayout.PREFERRED_SIZE, 543, GroupLayout.PREFERRED_SIZE))
+						.addGroup(Alignment.LEADING, gl_panel_1.createParallelGroup(Alignment.LEADING, false)
+								.addGroup(Alignment.TRAILING, gl_panel_1.createSequentialGroup()
+										.addComponent(counter1, GroupLayout.PREFERRED_SIZE, 103,
 												GroupLayout.PREFERRED_SIZE)
-										.addComponent(rdbtnAns4).addComponent(rdbtnAns3).addComponent(rdbtnAns2)
-										.addComponent(rdbtnAns1)))
+										.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE,
+												Short.MAX_VALUE)
+										.addComponent(btnPrev, GroupLayout.PREFERRED_SIZE, 113,
+												GroupLayout.PREFERRED_SIZE)
+										.addGap(54)
+										.addComponent(btnNext, GroupLayout.PREFERRED_SIZE, 113,
+												GroupLayout.PREFERRED_SIZE)
+										.addGap(59).addComponent(btnMMenu, GroupLayout.PREFERRED_SIZE, 122,
+												GroupLayout.PREFERRED_SIZE))
+								.addComponent(labelPic, Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 671,
+										GroupLayout.PREFERRED_SIZE)
+								.addComponent(Q1rdbtnAns4).addComponent(Q1rdbtnAns3).addComponent(Q1rdbtnAns2)
+								.addComponent(Q1rdbtnAns1)))
 						.addContainerGap(293, Short.MAX_VALUE)));
 		gl_panel_1.setVerticalGroup(gl_panel_1.createParallelGroup(Alignment.LEADING).addGroup(gl_panel_1
 				.createSequentialGroup().addGap(27)
-				.addComponent(label, GroupLayout.PREFERRED_SIZE, 83, GroupLayout.PREFERRED_SIZE)
+				.addComponent(Q1label, GroupLayout.PREFERRED_SIZE, 83, GroupLayout.PREFERRED_SIZE)
 				.addPreferredGap(ComponentPlacement.RELATED)
 				.addComponent(labelPic, GroupLayout.PREFERRED_SIZE, 331, GroupLayout.PREFERRED_SIZE).addGap(12)
-				.addComponent(rdbtnAns1).addPreferredGap(ComponentPlacement.RELATED).addComponent(rdbtnAns2)
-				.addPreferredGap(ComponentPlacement.RELATED).addComponent(rdbtnAns3)
-				.addPreferredGap(ComponentPlacement.RELATED).addComponent(rdbtnAns4)
+				.addComponent(Q1rdbtnAns1).addPreferredGap(ComponentPlacement.RELATED).addComponent(Q1rdbtnAns2)
+				.addPreferredGap(ComponentPlacement.RELATED).addComponent(Q1rdbtnAns3)
+				.addPreferredGap(ComponentPlacement.RELATED).addComponent(Q1rdbtnAns4)
 				.addPreferredGap(ComponentPlacement.RELATED)
 				.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_panel_1.createParallelGroup(Alignment.BASELINE)
 								.addComponent(btnPrev, GroupLayout.DEFAULT_SIZE, 43, Short.MAX_VALUE)
-								.addComponent(label_2, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE))
+								.addComponent(counter1, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE))
 						.addGroup(gl_panel_1.createSequentialGroup().addGap(2).addComponent(btnNext,
 								GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE))
 						.addGroup(gl_panel_1.createSequentialGroup().addGap(2).addComponent(btnMMenu,
@@ -212,23 +292,14 @@ public class Question {
 				.addGap(27)));
 		panel_1.setLayout(gl_panel_1);
 
-		setqCount(1);
-
-		System.out.println(qCount);
-
-		JLabel label_1 = new JLabel("Q" + (qCount+1) + " " + q.qpa[qCount][0]);
-		label_1.setFont(new Font("Tahoma", Font.PLAIN, 20));
-
-		JLabel label_3 = new JLabel((qCount+1) + "/5");
-		label_3.setHorizontalAlignment(SwingConstants.CENTER);
-		label_3.setFont(new Font("Tahoma", Font.PLAIN, 20));
-
 		JButton button = new JButton("Previous");
 		button.setEnabled(true);
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				btnPrev.setEnabled(false);
-				setqCount(getqCount() - 1);
+				//decrease qCount by 1
+				qCount--;
+				//load the previous panel using cardlayout
 				CardLayout cardLayout = (CardLayout) (panel.getLayout());
 				cardLayout.show(panel, "Q1");
 
@@ -239,14 +310,49 @@ public class Question {
 		JButton button_1 = new JButton("Next");
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				setqCount((getqCount() + 1));
+				//increase qCount by 1
+				qCount++;
+				//set the next questions lable, counter and radio buttons
+				Q3label.setText("Q" + (getqCount() + 1) + " " + q.qpa[getqCount()][0]);
+				Q3label.setFont(new Font("Tahoma", Font.PLAIN, 20));
+				counter3.setText((getqCount() + 1) + "/5");
+
+				counter3.setHorizontalAlignment(SwingConstants.CENTER);
+				counter3.setFont(new Font("Tahoma", Font.PLAIN, 20));
+
+				Q3rdbtnAns1.setText(q.qpa[getqCount()][1]);
+				Q3rdbtnAns1.addActionListener(new RadioButtonActionListener() {
+				});
+				buttonGroup.add(Q3rdbtnAns1);
+				Q3rdbtnAns1.setFont(new Font("Tahoma", Font.PLAIN, 18));
+
+				Q3rdbtnAns2.setText(q.qpa[getqCount()][2]);
+				Q3rdbtnAns2.addActionListener(new RadioButtonActionListener() {
+				});
+				buttonGroup.add(Q3rdbtnAns2);
+				Q3rdbtnAns2.setFont(new Font("Tahoma", Font.PLAIN, 18));
+
+				Q3rdbtnAns3.setText(q.qpa[getqCount()][3]);
+				Q3rdbtnAns3.addActionListener(new RadioButtonActionListener() {
+				});
+				buttonGroup.add(Q3rdbtnAns3);
+				Q3rdbtnAns3.setFont(new Font("Tahoma", Font.PLAIN, 18));
+
+				Q3rdbtnAns4.setText(q.qpa[getqCount()][4]);
+				Q3rdbtnAns4.addActionListener(new RadioButtonActionListener() {
+				});
+				buttonGroup.add(Q3rdbtnAns4);
+				Q3rdbtnAns4.setFont(new Font("Tahoma", Font.PLAIN, 18));
+
+				//load next panel using cardlayout
 				CardLayout cardLayout = (CardLayout) (panel.getLayout());
 				cardLayout.show(panel, "Q3");
 
 			}
 		});
 		button_1.setFont(new Font("Tahoma", Font.PLAIN, 18));
-
+		
+		//Loic add goto main menu function here!
 		JButton button_2 = new JButton("Main Menu");
 		button_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -255,32 +361,17 @@ public class Question {
 		button_2.setFont(new Font("Tahoma", Font.PLAIN, 18));
 
 		JLabel label_4 = new JLabel("");
-		label_4.setIcon(new ImageIcon("C:\\Users\\Riku\\Desktop\\6e18d91076204287c227ce03e273c701_original.jpg"));
+		label_4.setIcon(null);
 
-		JRadioButton radioButton = new JRadioButton(q.qpa[getqCount()][1]);
-		buttonGroup.add(radioButton);
-		radioButton.setFont(new Font("Tahoma", Font.PLAIN, 18));
-
-		JRadioButton radioButton_1 = new JRadioButton(q.qpa[getqCount()][2]);
-		buttonGroup.add(radioButton_1);
-		radioButton_1.setFont(new Font("Tahoma", Font.PLAIN, 18));
-
-		JRadioButton radioButton_2 = new JRadioButton(q.qpa[getqCount()][3]);
-		buttonGroup.add(radioButton_2);
-		radioButton_2.setFont(new Font("Tahoma", Font.PLAIN, 18));
-
-		JRadioButton radioButton_3 = new JRadioButton(q.qpa[getqCount()][4]);
-		buttonGroup.add(radioButton_3);
-		radioButton_3.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		GroupLayout gl_panel_2 = new GroupLayout(panel_2);
 		gl_panel_2.setHorizontalGroup(gl_panel_2.createParallelGroup(Alignment.LEADING).addGroup(gl_panel_2
 				.createSequentialGroup().addGap(294)
 				.addGroup(gl_panel_2.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_panel_2.createSequentialGroup().addGap(128).addComponent(label_1,
+						.addGroup(gl_panel_2.createSequentialGroup().addGap(128).addComponent(Q2label,
 								GroupLayout.PREFERRED_SIZE, 543, GroupLayout.PREFERRED_SIZE))
 						.addComponent(label_4, GroupLayout.PREFERRED_SIZE, 671, GroupLayout.PREFERRED_SIZE)
 						.addGroup(gl_panel_2.createSequentialGroup()
-								.addComponent(label_3, GroupLayout.PREFERRED_SIZE, 103, GroupLayout.PREFERRED_SIZE)
+								.addComponent(counter2, GroupLayout.PREFERRED_SIZE, 103, GroupLayout.PREFERRED_SIZE)
 								.addGap(107)
 								.addComponent(button, GroupLayout.PREFERRED_SIZE, 113, GroupLayout.PREFERRED_SIZE)
 								.addGap(54)
@@ -288,31 +379,31 @@ public class Question {
 								.addGap(59)
 								.addComponent(button_2, GroupLayout.PREFERRED_SIZE, 122, GroupLayout.PREFERRED_SIZE))
 						.addGroup(gl_panel_2.createParallelGroup(Alignment.TRAILING, false)
-								.addComponent(radioButton, Alignment.LEADING, GroupLayout.DEFAULT_SIZE,
+								.addComponent(Q2rdbtnAns4, Alignment.LEADING, GroupLayout.DEFAULT_SIZE,
 										GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-								.addComponent(radioButton_1, Alignment.LEADING, GroupLayout.DEFAULT_SIZE,
+								.addComponent(Q2rdbtnAns3, Alignment.LEADING, GroupLayout.DEFAULT_SIZE,
 										GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-								.addComponent(radioButton_2, Alignment.LEADING, GroupLayout.DEFAULT_SIZE,
+								.addComponent(Q2rdbtnAns2, Alignment.LEADING, GroupLayout.DEFAULT_SIZE,
 										GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-								.addComponent(radioButton_3, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 249,
+								.addComponent(Q2rdbtnAns1, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 249,
 										Short.MAX_VALUE)))
 				.addContainerGap(293, Short.MAX_VALUE)));
 		gl_panel_2.setVerticalGroup(gl_panel_2.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel_2.createSequentialGroup().addGap(27)
-						.addComponent(label_1, GroupLayout.PREFERRED_SIZE, 83, GroupLayout.PREFERRED_SIZE).addGap(9)
+						.addComponent(Q2label, GroupLayout.PREFERRED_SIZE, 83, GroupLayout.PREFERRED_SIZE).addGap(9)
 						.addComponent(label_4, GroupLayout.PREFERRED_SIZE, 331, GroupLayout.PREFERRED_SIZE).addGap(12)
-						.addComponent(radioButton_3, GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE)
+						.addComponent(Q2rdbtnAns1, GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE)
 						.addPreferredGap(ComponentPlacement.RELATED)
-						.addComponent(radioButton_2, GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE)
+						.addComponent(Q2rdbtnAns2, GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE)
 						.addPreferredGap(ComponentPlacement.RELATED)
-						.addComponent(radioButton_1, GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE)
+						.addComponent(Q2rdbtnAns3, GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE)
 						.addPreferredGap(ComponentPlacement.RELATED)
-						.addComponent(radioButton, GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE)
+						.addComponent(Q2rdbtnAns4, GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE)
 						.addPreferredGap(ComponentPlacement.RELATED)
 						.addGroup(gl_panel_2
 								.createParallelGroup(Alignment.LEADING)
 								.addGroup(
-										gl_panel_2.createSequentialGroup().addGap(4).addComponent(label_3,
+										gl_panel_2.createSequentialGroup().addGap(4).addComponent(counter2,
 												GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE))
 								.addComponent(button, GroupLayout.PREFERRED_SIZE, 43, GroupLayout.PREFERRED_SIZE)
 								.addGroup(gl_panel_2.createSequentialGroup().addGap(2).addComponent(button_1,
@@ -322,39 +413,19 @@ public class Question {
 						.addContainerGap(27, Short.MAX_VALUE)));
 		panel_2.setLayout(gl_panel_2);
 
-		setqCount(2);
-
-		JLabel label_5 = new JLabel("Q" + (getqCount()+1) + " " + q.qpa[getqCount()][0]);
-		label_5.setFont(new Font("Tahoma", Font.PLAIN, 20));
 
 		JLabel label_6 = new JLabel("");
-
-		JRadioButton radioButton_4 = new JRadioButton(q.qpa[qCount][1]);
-		buttonGroup.add(radioButton_4);
-		radioButton_4.setFont(new Font("Tahoma", Font.PLAIN, 18));
-
-		JRadioButton radioButton_5 = new JRadioButton(q.qpa[qCount][2]);
-		buttonGroup.add(radioButton_5);
-		radioButton_5.setFont(new Font("Tahoma", Font.PLAIN, 18));
-
-		JRadioButton radioButton_6 = new JRadioButton(q.qpa[qCount][3]);
-		buttonGroup.add(radioButton_6);
-		radioButton_6.setFont(new Font("Tahoma", Font.PLAIN, 18));
-
-		JRadioButton radioButton_7 = new JRadioButton(q.qpa[qCount][4]);
-		buttonGroup.add(radioButton_7);
-		radioButton_7.setFont(new Font("Tahoma", Font.PLAIN, 18));
-
-		JLabel label_7 = new JLabel((getqCount()+1) + "/5");
-		label_7.setHorizontalAlignment(SwingConstants.CENTER);
-		label_7.setFont(new Font("Tahoma", Font.PLAIN, 20));
 
 		JButton button_3 = new JButton("Previous");
 		button_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				setqCount(getqCount() - 1);
+				//decrease qCount by 1
+				qCount--;
+				//load the previous panel using cardlayout
 				CardLayout cardLayout = (CardLayout) (panel.getLayout());
 				cardLayout.show(panel, "Q2");
+
+				System.out.println("qcount: " + getqCount());
 
 			}
 		});
@@ -363,25 +434,65 @@ public class Question {
 		JButton button_4 = new JButton("Next");
 		button_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				setqCount((getqCount() + 1));
+				//increase qCount by 1
+				qCount++;
+				//set the next questions lable, counter and radio buttons
+				Q4label.setText("Q" + (getqCount() + 1) + " " + q.qpa[getqCount()][0]);
+				Q4label.setFont(new Font("Tahoma", Font.PLAIN, 20));
+
+				counter4.setText((getqCount() + 1) + "/5");
+				counter4.setHorizontalAlignment(SwingConstants.CENTER);
+				counter4.setFont(new Font("Tahoma", Font.PLAIN, 20));
+
+				Q4rdbtnAns1.setText(q.qpa[getqCount()][1]);
+				Q4rdbtnAns1.addActionListener(new RadioButtonActionListener() {
+				});
+				buttonGroup.add(Q4rdbtnAns1);
+				Q4rdbtnAns1.setFont(new Font("Tahoma", Font.PLAIN, 18));
+
+				Q4rdbtnAns2.setText(q.qpa[getqCount()][2]);
+				Q4rdbtnAns2.addActionListener(new RadioButtonActionListener() {
+				});
+				buttonGroup.add(Q4rdbtnAns2);
+				Q4rdbtnAns2.setFont(new Font("Tahoma", Font.PLAIN, 18));
+
+				Q4rdbtnAns3.setText(q.qpa[getqCount()][3]);
+				Q4rdbtnAns3.addActionListener(new RadioButtonActionListener() {
+				});
+				buttonGroup.add(Q4rdbtnAns3);
+				Q4rdbtnAns3.setFont(new Font("Tahoma", Font.PLAIN, 18));
+
+				Q4rdbtnAns4.setText(q.qpa[getqCount()][4]);
+				Q4rdbtnAns4.addActionListener(new RadioButtonActionListener() {
+				});
+				buttonGroup.add(Q4rdbtnAns4);
+				Q4rdbtnAns4.setFont(new Font("Tahoma", Font.PLAIN, 18));
+				
+				//load next panel using cardlayout
 				CardLayout cardLayout = (CardLayout) (panel.getLayout());
 				cardLayout.show(panel, "Q4");
+				System.out.println("qcount: " + getqCount());
 
 			}
 		});
 		button_4.setFont(new Font("Tahoma", Font.PLAIN, 18));
-
+		
+		//Loic add goto main menu function here!
 		JButton button_5 = new JButton("Main Menu");
+		button_5.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		button_5.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		GroupLayout gl_panel_3 = new GroupLayout(panel_3);
 		gl_panel_3.setHorizontalGroup(gl_panel_3.createParallelGroup(Alignment.LEADING).addGroup(gl_panel_3
 				.createSequentialGroup().addGap(294)
 				.addGroup(gl_panel_3.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_panel_3.createSequentialGroup().addGap(128).addComponent(label_5,
+						.addGroup(gl_panel_3.createSequentialGroup().addGap(128).addComponent(Q3label,
 								GroupLayout.PREFERRED_SIZE, 543, GroupLayout.PREFERRED_SIZE))
 						.addComponent(label_6, GroupLayout.PREFERRED_SIZE, 671, GroupLayout.PREFERRED_SIZE)
 						.addGroup(gl_panel_3.createSequentialGroup()
-								.addComponent(label_7, GroupLayout.PREFERRED_SIZE, 103, GroupLayout.PREFERRED_SIZE)
+								.addComponent(counter3, GroupLayout.PREFERRED_SIZE, 103, GroupLayout.PREFERRED_SIZE)
 								.addGap(107)
 								.addComponent(button_3, GroupLayout.PREFERRED_SIZE, 113, GroupLayout.PREFERRED_SIZE)
 								.addGap(54)
@@ -389,31 +500,31 @@ public class Question {
 								.addGap(59)
 								.addComponent(button_5, GroupLayout.PREFERRED_SIZE, 122, GroupLayout.PREFERRED_SIZE))
 						.addGroup(gl_panel_3.createParallelGroup(Alignment.TRAILING, false)
-								.addComponent(radioButton_7, Alignment.LEADING, GroupLayout.DEFAULT_SIZE,
+								.addComponent(Q3rdbtnAns4, Alignment.LEADING, GroupLayout.DEFAULT_SIZE,
 										GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-								.addComponent(radioButton_6, Alignment.LEADING, GroupLayout.DEFAULT_SIZE,
+								.addComponent(Q3rdbtnAns3, Alignment.LEADING, GroupLayout.DEFAULT_SIZE,
 										GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-								.addComponent(radioButton_5, Alignment.LEADING, GroupLayout.DEFAULT_SIZE,
+								.addComponent(Q3rdbtnAns2, Alignment.LEADING, GroupLayout.DEFAULT_SIZE,
 										GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-								.addComponent(radioButton_4, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 234,
+								.addComponent(Q3rdbtnAns1, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 234,
 										Short.MAX_VALUE)))
 				.addContainerGap(293, Short.MAX_VALUE)));
 		gl_panel_3.setVerticalGroup(gl_panel_3.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel_3.createSequentialGroup().addGap(27)
-						.addComponent(label_5, GroupLayout.PREFERRED_SIZE, 83, GroupLayout.PREFERRED_SIZE).addGap(9)
+						.addComponent(Q3label, GroupLayout.PREFERRED_SIZE, 83, GroupLayout.PREFERRED_SIZE).addGap(9)
 						.addComponent(label_6, GroupLayout.PREFERRED_SIZE, 331, GroupLayout.PREFERRED_SIZE).addGap(12)
-						.addComponent(radioButton_4, GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE)
+						.addComponent(Q3rdbtnAns1, GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE)
 						.addPreferredGap(ComponentPlacement.RELATED)
-						.addComponent(radioButton_5, GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE)
+						.addComponent(Q3rdbtnAns2, GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE)
 						.addPreferredGap(ComponentPlacement.RELATED)
-						.addComponent(radioButton_6, GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE)
+						.addComponent(Q3rdbtnAns3, GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE)
 						.addPreferredGap(ComponentPlacement.RELATED)
-						.addComponent(radioButton_7, GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE)
+						.addComponent(Q3rdbtnAns4, GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE)
 						.addPreferredGap(ComponentPlacement.RELATED)
 						.addGroup(gl_panel_3
 								.createParallelGroup(Alignment.LEADING)
 								.addGroup(
-										gl_panel_3.createSequentialGroup().addGap(4).addComponent(label_7,
+										gl_panel_3.createSequentialGroup().addGap(4).addComponent(counter3,
 												GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE))
 								.addComponent(button_3, GroupLayout.PREFERRED_SIZE, 43, GroupLayout.PREFERRED_SIZE)
 								.addGroup(gl_panel_3.createSequentialGroup().addGap(2).addComponent(button_4,
@@ -423,39 +534,18 @@ public class Question {
 						.addContainerGap(27, Short.MAX_VALUE)));
 		panel_3.setLayout(gl_panel_3);
 
-		setqCount(3);
-
-		JLabel label_8 = new JLabel("Q" + (getqCount()+1) + " " + q.qpa[getqCount()][0]);
-		label_8.setFont(new Font("Tahoma", Font.PLAIN, 20));
 
 		JLabel label_9 = new JLabel("");
-
-		JRadioButton radioButton_8 = new JRadioButton(q.qpa[qCount][1]);
-		buttonGroup.add(radioButton_8);
-		radioButton_8.setFont(new Font("Tahoma", Font.PLAIN, 18));
-
-		JRadioButton radioButton_9 = new JRadioButton(q.qpa[qCount][2]);
-		buttonGroup.add(radioButton_9);
-		radioButton_9.setFont(new Font("Tahoma", Font.PLAIN, 18));
-
-		JRadioButton radioButton_10 = new JRadioButton(q.qpa[qCount][3]);
-		buttonGroup.add(radioButton_10);
-		radioButton_10.setFont(new Font("Tahoma", Font.PLAIN, 18));
-
-		JRadioButton radioButton_11 = new JRadioButton(q.qpa[qCount][4]);
-		buttonGroup.add(radioButton_11);
-		radioButton_11.setFont(new Font("Tahoma", Font.PLAIN, 18));
-
-		JLabel label_10 = new JLabel((getqCount()+1) + "/5");
-		label_10.setHorizontalAlignment(SwingConstants.CENTER);
-		label_10.setFont(new Font("Tahoma", Font.PLAIN, 20));
 
 		JButton button_6 = new JButton("Previous");
 		button_6.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				setqCount(getqCount() - 1);
+				//decrease qCount by 1
+				qCount--;
+				//load the previous panel using cardlayout
 				CardLayout cardLayout = (CardLayout) (panel.getLayout());
 				cardLayout.show(panel, "Q3");
+				System.out.println("qcount: " + getqCount());
 
 			}
 		});
@@ -464,25 +554,30 @@ public class Question {
 		JButton button_7 = new JButton("Next");
 		button_7.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				setqCount((getqCount() + 1));
-				CardLayout cardLayout = (CardLayout) (panel.getLayout());
-				cardLayout.show(panel, "Q5");
+//				setqCount((getqCount() + 1));
+//				CardLayout cardLayout = (CardLayout) (panel.getLayout());
+//				cardLayout.show(panel, "Q5");
 
 			}
 		});
 		button_7.setFont(new Font("Tahoma", Font.PLAIN, 18));
 
+		//Loic add goto main menu function here!
 		JButton button_8 = new JButton("Main Menu");
+		button_8.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
 		button_8.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		GroupLayout gl_panel_4 = new GroupLayout(panel_4);
 		gl_panel_4.setHorizontalGroup(gl_panel_4.createParallelGroup(Alignment.LEADING).addGroup(gl_panel_4
 				.createSequentialGroup().addGap(294)
 				.addGroup(gl_panel_4.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_panel_4.createSequentialGroup().addGap(128).addComponent(label_8,
+						.addGroup(gl_panel_4.createSequentialGroup().addGap(128).addComponent(Q4label,
 								GroupLayout.PREFERRED_SIZE, 543, GroupLayout.PREFERRED_SIZE))
 						.addComponent(label_9, GroupLayout.PREFERRED_SIZE, 671, GroupLayout.PREFERRED_SIZE)
 						.addGroup(gl_panel_4.createSequentialGroup()
-								.addComponent(label_10, GroupLayout.PREFERRED_SIZE, 103, GroupLayout.PREFERRED_SIZE)
+								.addComponent(counter4, GroupLayout.PREFERRED_SIZE, 103, GroupLayout.PREFERRED_SIZE)
 								.addGap(107)
 								.addComponent(button_6, GroupLayout.PREFERRED_SIZE, 113, GroupLayout.PREFERRED_SIZE)
 								.addGap(54)
@@ -490,30 +585,32 @@ public class Question {
 								.addGap(59)
 								.addComponent(button_8, GroupLayout.PREFERRED_SIZE, 122, GroupLayout.PREFERRED_SIZE))
 						.addGroup(gl_panel_4.createParallelGroup(Alignment.TRAILING, false)
-								.addComponent(radioButton_11, Alignment.LEADING, GroupLayout.DEFAULT_SIZE,
+								.addComponent(Q4rdbtnAns4, Alignment.LEADING, GroupLayout.DEFAULT_SIZE,
 										GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-								.addComponent(radioButton_10, Alignment.LEADING, GroupLayout.DEFAULT_SIZE,
+								.addComponent(Q4rdbtnAns3, Alignment.LEADING, GroupLayout.DEFAULT_SIZE,
 										GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-								.addComponent(radioButton_9, Alignment.LEADING, GroupLayout.DEFAULT_SIZE,
+								.addComponent(Q4rdbtnAns2, Alignment.LEADING, GroupLayout.DEFAULT_SIZE,
 										GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-								.addComponent(radioButton_8, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 240,
+								.addComponent(Q4rdbtnAns1, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 240,
 										Short.MAX_VALUE)))
 				.addContainerGap(293, Short.MAX_VALUE)));
 		gl_panel_4.setVerticalGroup(gl_panel_4.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel_4.createSequentialGroup().addGap(27)
-						.addComponent(label_8, GroupLayout.PREFERRED_SIZE, 83, GroupLayout.PREFERRED_SIZE).addGap(9)
+						.addComponent(Q4label, GroupLayout.PREFERRED_SIZE, 83, GroupLayout.PREFERRED_SIZE).addGap(9)
 						.addComponent(label_9, GroupLayout.PREFERRED_SIZE, 331, GroupLayout.PREFERRED_SIZE).addGap(12)
-						.addComponent(radioButton_8, GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE)
+						.addComponent(Q4rdbtnAns1, GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE)
 						.addPreferredGap(ComponentPlacement.RELATED)
-						.addComponent(radioButton_9, GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE)
+						.addComponent(Q4rdbtnAns2, GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE)
 						.addPreferredGap(ComponentPlacement.RELATED)
-						.addComponent(radioButton_10, GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE)
+						.addComponent(Q4rdbtnAns3, GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE)
 						.addPreferredGap(ComponentPlacement.RELATED)
-						.addComponent(radioButton_11, GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE)
+						.addComponent(Q4rdbtnAns4, GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE)
 						.addPreferredGap(ComponentPlacement.RELATED)
-						.addGroup(gl_panel_4.createParallelGroup(Alignment.LEADING)
-								.addGroup(gl_panel_4.createSequentialGroup().addGap(4).addComponent(label_10,
-										GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE))
+						.addGroup(gl_panel_4
+								.createParallelGroup(Alignment.LEADING)
+								.addGroup(
+										gl_panel_4.createSequentialGroup().addGap(4).addComponent(counter4,
+												GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE))
 								.addComponent(button_6, GroupLayout.PREFERRED_SIZE, 43, GroupLayout.PREFERRED_SIZE)
 								.addGroup(gl_panel_4.createSequentialGroup().addGap(2).addComponent(button_7,
 										GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE))
@@ -521,241 +618,6 @@ public class Question {
 										GroupLayout.PREFERRED_SIZE, 41, GroupLayout.PREFERRED_SIZE)))
 						.addContainerGap(27, Short.MAX_VALUE)));
 		panel_4.setLayout(gl_panel_4);
-
-		panel_5.setBorder(new EmptyBorder(5, 5, 5, 5));
-
-		JPanel panel_5_1 = new JPanel();
-
-		setqCount(4);
-
-		JLabel label_11 = new JLabel("<html>Q" + (getqCount()+1) + " " + q.qpa[getqCount()][0]);
-		GroupLayout gl_panel_5_1 = new GroupLayout(panel_5_1);
-		gl_panel_5_1.setHorizontalGroup(
-			gl_panel_5_1.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel_5_1.createSequentialGroup()
-					.addComponent(label_11, GroupLayout.PREFERRED_SIZE, 632, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-		);
-		gl_panel_5_1.setVerticalGroup(
-			gl_panel_5_1.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel_5_1.createSequentialGroup()
-					.addContainerGap()
-					.addComponent(label_11, GroupLayout.PREFERRED_SIZE, 202, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-		);
-		panel_5_1.setLayout(gl_panel_5_1);
-
-		JPanel panel_5_2 = new JPanel();
-
-		JLabel label_12 = new JLabel("Blank_3");
-
-		textField = new JTextField();
-		textField.setColumns(10);
-
-		JButton button_9 = new JButton("Submit");
-		button_9.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if(textField_2.getText().equals(q.qca[4][1])&&textField_1.getText().equals(q.qca[4][2])
-						&&textField.getText().equals(q.qca[4][3])){
-					JOptionPane.showMessageDialog(null, "Correct!");
-				}
-				else{
-					JOptionPane.showMessageDialog(null, "Wrong!");
-				}
-			}
-		});
-
-		JButton button_10 = new JButton("Previous");
-		button_10.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				setqCount(getqCount() - 1);
-				CardLayout cardLayout = (CardLayout) (panel.getLayout());
-				cardLayout.show(panel, "Q4");
-			}
-		});
-
-		JButton button_11 = new JButton("Main Menu");
-
-		JLabel label_13 = new JLabel("Blank_2");
-
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
-
-		JLabel label_14 = new JLabel("Blank_1");
-
-		textField_2 = new JTextField();
-		textField_2.setColumns(10);
-		GroupLayout gl_panel_5_2 = new GroupLayout(panel_5_2);
-		gl_panel_5_2.setHorizontalGroup(gl_panel_5_2.createParallelGroup(Alignment.LEADING)
-				.addGap(0, 631, Short.MAX_VALUE)
-				.addGroup(gl_panel_5_2.createSequentialGroup().addContainerGap().addGroup(gl_panel_5_2
-						.createParallelGroup(Alignment.LEADING).addGroup(gl_panel_5_2.createSequentialGroup()
-								.addComponent(label_12).addPreferredGap(ComponentPlacement.RELATED)
-								.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-										GroupLayout.PREFERRED_SIZE)
-								.addPreferredGap(ComponentPlacement.UNRELATED).addComponent(button_9)
-								.addPreferredGap(ComponentPlacement.RELATED, 96, Short.MAX_VALUE)
-								.addComponent(button_10).addPreferredGap(ComponentPlacement.RELATED)
-								.addComponent(button_11).addGap(3))
-						.addGroup(gl_panel_5_2.createSequentialGroup()
-								.addGroup(gl_panel_5_2.createParallelGroup(Alignment.LEADING)
-										.addGroup(gl_panel_5_2.createSequentialGroup()
-												.addComponent(label_13).addPreferredGap(ComponentPlacement.RELATED)
-												.addComponent(textField_1, GroupLayout.PREFERRED_SIZE,
-														GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-										.addGroup(gl_panel_5_2.createSequentialGroup().addComponent(label_14)
-												.addPreferredGap(ComponentPlacement.RELATED).addComponent(textField_2,
-														GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-														GroupLayout.PREFERRED_SIZE)))
-								.addContainerGap(408, Short.MAX_VALUE)))));
-		gl_panel_5_2
-				.setVerticalGroup(gl_panel_5_2.createParallelGroup(Alignment.TRAILING).addGap(0, 124, Short.MAX_VALUE)
-						.addGroup(gl_panel_5_2.createSequentialGroup()
-								.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-								.addGroup(gl_panel_5_2.createParallelGroup(Alignment.BASELINE).addComponent(label_14)
-										.addComponent(textField_2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-												GroupLayout.PREFERRED_SIZE))
-								.addPreferredGap(ComponentPlacement.UNRELATED)
-								.addGroup(gl_panel_5_2.createParallelGroup(Alignment.BASELINE).addComponent(label_13)
-										.addComponent(textField_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-												GroupLayout.PREFERRED_SIZE))
-								.addPreferredGap(ComponentPlacement.RELATED)
-								.addGroup(gl_panel_5_2.createParallelGroup(Alignment.BASELINE).addComponent(label_12)
-										.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-												GroupLayout.PREFERRED_SIZE)
-										.addComponent(button_9).addComponent(button_10).addComponent(button_11))
-								.addContainerGap()));
-		panel_5_2.setLayout(gl_panel_5_2);
-		GroupLayout gl_panel_5 = new GroupLayout(panel_5);
-		gl_panel_5.setHorizontalGroup(
-			gl_panel_5.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel_5.createSequentialGroup()
-					.addContainerGap()
-					.addGroup(gl_panel_5.createParallelGroup(Alignment.LEADING)
-						.addComponent(panel_5_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(panel_5_2, GroupLayout.PREFERRED_SIZE, 631, GroupLayout.PREFERRED_SIZE))
-					.addGap(602))
-		);
-		gl_panel_5.setVerticalGroup(
-			gl_panel_5.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel_5.createSequentialGroup()
-					.addContainerGap()
-					.addComponent(panel_5_1, GroupLayout.PREFERRED_SIZE, 222, GroupLayout.PREFERRED_SIZE)
-					.addGap(18)
-					.addComponent(panel_5_2, GroupLayout.PREFERRED_SIZE, 124, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(274, Short.MAX_VALUE))
-		);
-		panel_5.setLayout(gl_panel_5);
-
-		panel_6.setBorder(new EmptyBorder(5, 5, 5, 5));
-
-		JPanel panel_10 = new JPanel();
-
-		setqCount(14);
-
-		JLabel label_15 = new JLabel("Q" + (getqCount()+1) + " " + q.qpa[getqCount()][0]);
-		GroupLayout gl_panel_10 = new GroupLayout(panel_10);
-		gl_panel_10
-				.setHorizontalGroup(gl_panel_10.createParallelGroup(Alignment.LEADING).addGap(0, 634, Short.MAX_VALUE)
-						.addGroup(gl_panel_10.createSequentialGroup().addContainerGap()
-								.addComponent(label_15, GroupLayout.PREFERRED_SIZE, 619, GroupLayout.PREFERRED_SIZE)
-								.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
-		gl_panel_10.setVerticalGroup(gl_panel_10.createParallelGroup(Alignment.LEADING).addGap(0, 243, Short.MAX_VALUE)
-				.addGroup(gl_panel_10.createSequentialGroup().addContainerGap()
-						.addComponent(label_15, GroupLayout.PREFERRED_SIZE, 228, GroupLayout.PREFERRED_SIZE)
-						.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
-		panel_10.setLayout(gl_panel_10);
-
-		JPanel panel_11 = new JPanel();
-
-		JLabel label_16 = new JLabel("Blank_2");
-
-		textField_3 = new JTextField();
-		textField_3.setColumns(10);
-
-		JButton button_12 = new JButton("Submit");
-		button_12.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-			}
-		});
-
-		JButton button_13 = new JButton("Previous");
-		button_13.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				CardLayout cardLayout = (CardLayout) (panel.getLayout());
-				cardLayout.show(panel, "Q3");
-			}
-		});
-
-		JButton button_14 = new JButton("Main Menu");
-
-		JLabel label_17 = new JLabel("Blank_1");
-
-		textField_4 = new JTextField();
-		textField_4.setColumns(10);
-
-		JLabel label_18 = new JLabel("Blank_0");
-
-		textField_5 = new JTextField();
-		textField_5.setColumns(10);
-		GroupLayout gl_panel_11 = new GroupLayout(panel_11);
-		gl_panel_11
-				.setHorizontalGroup(gl_panel_11.createParallelGroup(Alignment.LEADING).addGap(0, 633, Short.MAX_VALUE)
-						.addGroup(gl_panel_11.createSequentialGroup().addContainerGap()
-								.addGroup(gl_panel_11
-										.createParallelGroup(Alignment.LEADING).addGroup(gl_panel_11
-												.createSequentialGroup()
-												.addComponent(label_16).addPreferredGap(ComponentPlacement.RELATED)
-												.addComponent(textField_3, GroupLayout.PREFERRED_SIZE,
-														GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-												.addPreferredGap(ComponentPlacement.RELATED).addComponent(button_12)
-												.addPreferredGap(ComponentPlacement.RELATED, 92, Short.MAX_VALUE)
-												.addComponent(button_13).addPreferredGap(ComponentPlacement.RELATED)
-												.addComponent(button_14))
-										.addGroup(gl_panel_11.createSequentialGroup().addComponent(label_17)
-												.addPreferredGap(ComponentPlacement.RELATED).addComponent(textField_4,
-														GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-														GroupLayout.PREFERRED_SIZE))
-										.addGroup(gl_panel_11.createSequentialGroup().addComponent(label_18)
-												.addPreferredGap(ComponentPlacement.RELATED).addComponent(textField_5,
-														GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-														GroupLayout.PREFERRED_SIZE)))
-								.addContainerGap()));
-		gl_panel_11.setVerticalGroup(gl_panel_11.createParallelGroup(Alignment.TRAILING).addGap(0, 252, Short.MAX_VALUE)
-				.addGroup(gl_panel_11.createSequentialGroup().addContainerGap(137, Short.MAX_VALUE)
-						.addGroup(gl_panel_11.createParallelGroup(Alignment.BASELINE).addComponent(label_18)
-								.addComponent(textField_5, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-										GroupLayout.PREFERRED_SIZE))
-						.addPreferredGap(ComponentPlacement.RELATED)
-						.addGroup(gl_panel_11.createParallelGroup(Alignment.BASELINE).addComponent(label_17)
-								.addComponent(textField_4, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-										GroupLayout.PREFERRED_SIZE))
-						.addPreferredGap(ComponentPlacement.RELATED)
-						.addGroup(gl_panel_11.createParallelGroup(Alignment.BASELINE).addComponent(label_16)
-								.addComponent(textField_3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-										GroupLayout.PREFERRED_SIZE)
-								.addComponent(button_12).addComponent(button_14).addComponent(button_13))
-						.addContainerGap()));
-		panel_11.setLayout(gl_panel_11);
-		GroupLayout gl_panel_6 = new GroupLayout(panel_6);
-		gl_panel_6.setHorizontalGroup(gl_panel_6.createParallelGroup(Alignment.LEADING).addGap(0, 1258, Short.MAX_VALUE)
-				.addGroup(gl_panel_6.createSequentialGroup().addContainerGap()
-						.addGroup(gl_panel_6.createParallelGroup(Alignment.LEADING)
-								.addComponent(panel_10, GroupLayout.PREFERRED_SIZE, 634, GroupLayout.PREFERRED_SIZE)
-								.addComponent(panel_11, GroupLayout.PREFERRED_SIZE, 633, GroupLayout.PREFERRED_SIZE))
-						.addContainerGap(599, Short.MAX_VALUE)));
-		gl_panel_6.setVerticalGroup(gl_panel_6.createParallelGroup(Alignment.LEADING).addGap(0, 664, Short.MAX_VALUE)
-				.addGroup(gl_panel_6.createSequentialGroup().addContainerGap()
-						.addComponent(panel_10, GroupLayout.PREFERRED_SIZE, 243, GroupLayout.PREFERRED_SIZE)
-						.addPreferredGap(ComponentPlacement.RELATED)
-						.addComponent(panel_11, GroupLayout.PREFERRED_SIZE, 252, GroupLayout.PREFERRED_SIZE)
-						.addContainerGap(134, Short.MAX_VALUE)));
-		panel_6.setLayout(gl_panel_6);
-		
-		JPanel imgQ1 = new JPanel();
-		panel.add(imgQ1, "name_168652155082284");
+		System.out.println("initialized qcount:" + getqCount());
 	}
-	}
-	
-
+}
